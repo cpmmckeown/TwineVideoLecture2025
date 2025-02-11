@@ -107,7 +107,26 @@ border-radius: 8px;
 {
   0%   {opacity: 0;}
   100% {opacity: 1;}
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="P1" tags="" position="900,450" size="100,100">{{{
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">//Mutes when you press the M key on a keyboard
+document.addEventListener("keydown", function (event) {
+    if (event.key.toLowerCase() === "m") {
+        mutePage();
+    }
+});
+
+// Mute a singular HTML5 element
+function muteMe(elem) {
+  if(elem.muted == true)
+  {elem.muted = false;}
+  else {elem.muted = true;}
+  }
+
+// Try to mute all video and audio elements on the page
+function mutePage() {
+    document.querySelectorAll("video, audio").forEach((elem) => muteMe(elem));
+}
+</script><tw-passagedata pid="1" name="P1" tags="" position="900,450" size="100,100">(set:$dept to 1)
+{{{
 &lt;!-- The video --&gt;
 &lt;video autoplay muted loop id=&quot;myVideo&quot;&gt;
   &lt;source src=&quot;Quick Vid 1.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -125,7 +144,8 @@ border-radius: 8px;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="2" name="M1" tags="" position="1100,450" size="100,100">{{{
+}}}</tw-passagedata><tw-passagedata pid="2" name="M1" tags="" position="1100,450" size="100,100">(if: $dept is 1)[
+{{{
 &lt;!-- The video --&gt;
 &lt;video autoplay muted loop id=&quot;myVideo&quot;&gt;
   &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -134,12 +154,39 @@ border-radius: 8px;
 &lt;!--The Buttons--&gt;
 &lt;div class=&quot;screenSplit&quot;&gt;
 &lt;div class=&quot;emptySpacer&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;twoButtons&quot;&gt;
-[[Go forward-&gt;P1]]
+&lt;div class=&quot;twoButtons&quot; style=&quot;animation-delay: 3s&quot;&gt;
+&lt;div class=&quot;button&quot;&gt;
+[[Go Backwards-&gt;P1]]
+&lt;/div&gt;
+&lt;div class=&quot;button&quot;&gt;
 [[Go Sideways-&gt;M2]]
 &lt;/div&gt;
 &lt;/div&gt;
-}}}</tw-passagedata><tw-passagedata pid="3" name="M2" tags="" position="900,675" size="100,100">{{{
+&lt;/div&gt;
+}}}
+]
+(if: $dept is 2)[
+{{{
+&lt;!-- The video --&gt;
+&lt;video autoplay muted loop id=&quot;myVideo&quot;&gt;
+  &lt;source src=&quot;Quick Vid 2.mp4&quot; type=&quot;video/mp4&quot;&gt;
+&lt;/video&gt;
+
+&lt;!--The Buttons--&gt;
+&lt;div class=&quot;screenSplit&quot;&gt;
+&lt;div class=&quot;emptySpacer&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;twoButtons&quot; style=&quot;animation-delay: 3s&quot;&gt;
+&lt;div class=&quot;button&quot;&gt;
+[[Go Backwards-&gt;M2]]
+&lt;/div&gt;
+&lt;div class=&quot;button&quot;&gt;
+[[Go Back to The Start-&gt;P1]]
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+}}}
+]</tw-passagedata><tw-passagedata pid="3" name="M2" tags="" position="900,675" size="100,100">(set: $dept to 2)
+{{{
 &lt;!-- The video --&gt;
 &lt;video autoplay muted loop id=&quot;myVideo&quot;&gt;
   &lt;source src=&quot;Quick Vid 3.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -148,9 +195,13 @@ border-radius: 8px;
 &lt;!--The Buttons--&gt;
 &lt;div class=&quot;screenSplit&quot;&gt;
 &lt;div class=&quot;emptySpacer&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;twoButtons&quot;&gt;
-[[Go back-&gt;P1]]
+&lt;div class=&quot;twoButtons&quot; style=&quot;animation-delay: 3s&quot;&gt;
+&lt;div class=&quot;button&quot;&gt;
+[[Go Backwards-&gt;P1]]
+&lt;/div&gt;
+&lt;div class=&quot;button&quot;&gt;
 [[Go Sideways-&gt;M1]]
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 }}}</tw-passagedata></tw-storydata>
