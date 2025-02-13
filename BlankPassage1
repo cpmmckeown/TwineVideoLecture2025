@@ -9,10 +9,10 @@
 <div class="emptySpacer"></div>
 <div class="twoButtons">
 <div class="button">
-(after: 3s)[[[Go forward->M1]]]
+(after: 3s)[[[Go forward->M2]]]
 </div>
 <div class="button">
-(after: 3s)[[[Go Sideways->M2]]]
+(after: 3s)[[[Go Sideways->M3]]]
 </div>
 </div>
 </div>
