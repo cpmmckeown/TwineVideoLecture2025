@@ -1,0 +1,18 @@
+//Mutes when you press the M key on a keyboard
+document.addEventListener("keydown", function (event) {
+    if (event.key.toLowerCase() === "m") {
+        mutePage();
+    }
+});
+
+// Mute a singular HTML5 element
+function muteMe(elem) {
+  if(elem.muted == true)
+  {elem.muted = false;}
+  else {elem.muted = true;}
+  }
+
+// Try to mute all video and audio elements on the page
+function mutePage() {
+    document.querySelectorAll("video, audio").forEach((elem) => muteMe(elem));
+}
