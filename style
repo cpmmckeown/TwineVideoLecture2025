@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+body{overflow: hidden;}
+
 tw-link, .enchantment-link {
  	font-weight: revert;
 	color: white;
@@ -32,11 +34,11 @@ tw-story{
 
 /* Style the video: 100% width and height to cover the entire window */
 #myVideo {
-  position: fixed;
+   position: fixed;
   right: 0;
   bottom: 0;
-    max-height: 100%;
-  
+  min-width: 100%;
+  min-height: 100%;
 }
 
 /*Needed to push the buttons to the bottom of the page*/
