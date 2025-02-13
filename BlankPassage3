@@ -1,0 +1,15 @@
+{{{
+<!-- The video -->
+<video autoplay muted loop id="myVideo">
+  <source src="Quick Vid 3.mp4" type="video/mp4">
+</video>
+
+<!--The Buttons-->
+<div class="screenSplit">
+<div class="emptySpacer"></div>
+<div class="twoButtons">
+[[Go back->P1]]
+[[Go Sideways->M1]]
+</div>
+</div>
+}}}
