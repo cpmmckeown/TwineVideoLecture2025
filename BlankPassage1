@@ -1,0 +1,19 @@
+{{{
+<!-- The video -->
+<video autoplay muted loop id="myVideo">
+  <source src="https://ia800807.us.archive.org/0/items/quick-vid-3/Quick%20Vid%201.mp4" type="video/mp4">
+</video>
+
+<!--The Buttons-->
+<div class="screenSplit">
+<div class="emptySpacer"></div>
+<div class="twoButtons">
+<div class="button">
+(after: 3s)[[[Go forward->M2]]]
+</div>
+<div class="button">
+(after: 3s)[[[Go Sideways->M3]]]
+</div>
+</div>
+</div>
+}}}
