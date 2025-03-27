@@ -72,7 +72,7 @@ display: grid;
   
   display: grid; 
   grid-template-columns: 1fr; 
-  grid-template-rows: 4fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
   gap: 0px 0px; 
   align-items: center; 
   position:fixed;
@@ -170,17 +170,17 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 (else:)[
 	(if: $guessDoorCode&#39;s (1) is &quot;father&quot;)[
 	&lt;!-- The video --&gt;
-&lt;video autoplay id=&quot;myVideo&quot;&gt;
+&lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/R%20FATHER.mp4&quot; type=&quot;video/mp4&quot; playsinline&gt;
 &lt;/video&gt;
 	](else-if: $guessDoorCode&#39;s (1) is &quot;son&quot;)[
 		&lt;!-- The video --&gt;
-&lt;video autoplay id=&quot;myVideo&quot;&gt;
+&lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/R%20SON&quot; type=&quot;video/mp4&quot; playsinline&gt;
 &lt;/video&gt;
 	](else:)[
 	&lt;!-- The video --&gt;
-&lt;video autoplay id=&quot;myVideo&quot;&gt;
+&lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/R%20GHOST&quot; type=&quot;video/mp4&quot; playsinline&gt;
 &lt;/video&gt;
 	]
@@ -189,7 +189,7 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 
 &lt;!--The Buttons--&gt;
 &lt;div class=&quot;screenSplit&quot;&gt;
-	&lt;div class=&quot;emptySpacer&quot; style=&quot;height:80vh;&quot;&gt;&lt;/div&gt;
+	&lt;div class=&quot;emptySpacer&quot;&gt;&lt;/div&gt;
 	&lt;div class=&quot;button&quot;&gt;[[Think hard -&gt;Pray]]&lt;/div&gt;
 &lt;/div&gt;
 
