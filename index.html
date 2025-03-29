@@ -11,6 +11,7 @@
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Sign of the cross sample.</tw-noscript></noscript></tw-story>
 <tw-storydata name="Sign of the cross sample" startnode="9" creator="Twine" creator-version="2.8.1" format="Harlowe" format-version="3.3.8" ifid="DC076141-621F-4E11-9772-285B4316DDFA" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 body{overflow:hidden;text-align: center;}
 
 tw-link, .enchantment-link {
@@ -33,6 +34,7 @@ tw-story{
 
   font-weight: unset;
   font-family:montserrat;
+  font-size: 2vh;
 }
 
 .visited {
@@ -79,6 +81,34 @@ display: grid;
   top:0;
   width:60vw;
 }
+
+@media only screen and (max-width: 575px) {
+  #myvideo{width:130vw;}
+  
+  .screenSplit {
+    display: grid; 
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 0px 0px; 
+  align-items: center; 
+  position:fixed;
+  top:0;
+  width:90vw;
+  }
+  
+  .screenSplitWithGuidance {
+display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr 1fr;
+  gap: 0px 0px;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 90vw;
+  height: 90vh;
+}
+}
+
 
 /*Also needed to push buttons to bottom*/
 .emptySpacer{
@@ -130,7 +160,9 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 {
   0%   {opacity: 0;}
   100% {opacity: 1;}
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="init" tags="startup" position="625,375" size="100,100">&lt;!-- it is always a good idea to initialize your variables, but with arrays it is particularly important --&gt;
+}
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="init" tags="startup" position="625,375" size="100,100">&lt;!-- it is always a good idea to initialize your variables, but with arrays it is particularly important --&gt;
 (set: $correctDoorCode to (a: &#39;Ghost&#39;, &#39;Ghost&#39;, &#39;Ghost&#39;))
 (set: $guessDoorCode to (a:))
 </tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="925,325" size="100,100">{{{
@@ -161,7 +193,8 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 		&lt;/div&gt;
         &lt;/div&gt;
 }}}
-</tw-passagedata><tw-passagedata pid="3" name="T1" tags="" position="925,450" size="100,100">The door opens into a blinding light</tw-passagedata><tw-passagedata pid="4" name="T2" tags="" position="1050,450" size="100,100">{(if: $guessDoorCode is (a:))[
+</tw-passagedata><tw-passagedata pid="3" name="T1" tags="" position="925,450" size="100,100">The door opens into a blinding light</tw-passagedata><tw-passagedata pid="4" name="T2" tags="" position="1050,450" size="100,100">{{{
+(if: $guessDoorCode is (a:))[
 &lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/DUCKY.mp4&quot; type=&quot;video/mp4&quot;&gt;
@@ -193,7 +226,7 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 	&lt;div class=&quot;button&quot;&gt;[[Think hard -&gt;Pray]]&lt;/div&gt;
 &lt;/div&gt;
 
-}</tw-passagedata><tw-passagedata pid="5" name="Pray" tags="" position="1050,575" size="100,100">{{{
+}}}</tw-passagedata><tw-passagedata pid="5" name="Pray" tags="" position="1050,575" size="100,100">{{{
 &lt;!-- The video --&gt;
 &lt;video autoplay loop id=&quot;myVideo&quot; playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/R%20THINKING.mp4&quot; type=&quot;video/mp4&quot;&gt;
