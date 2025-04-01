@@ -166,7 +166,7 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 window.audioElement = new Audio("https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/freaky%20music.mp3");
 audioElement.autoplay = true; // Auto play on the index page
 audioElement.id = "myAudio";
-//audioElement.crossOrigin = 'anonymous'; //needed for local testing
+//audioElement.crossOrigin = ''; //'anonymous' needed for local testing
 audioElement.loop = true; // Optional, depending on your requirements
 
 // Create the AudioContext
@@ -282,7 +282,7 @@ const video1 = document.getElementById('myVideo');
 
 (if: $guessDoorCode is (a:))[
 &lt;!-- The video --&gt;
-&lt;video id=&quot;myVideo&quot; autoplay playsinline crossorigin=&quot;anonymous&quot;&gt;
+&lt;video id=&quot;myVideo&quot; autoplay playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/DUCKY.mp4&quot; type=&quot;video/mp4&quot; &gt;
 &lt;/video&gt;
 
