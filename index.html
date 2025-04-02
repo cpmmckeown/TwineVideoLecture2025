@@ -162,9 +162,7 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
   100% {opacity: 1;}
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
-{
-//Setting up the background music
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">//Setting up the background music
 window.audioElement = new Audio("freaky%20music.mp3");
 audioElement.autoplay = true; // Auto play on the index page
 audioElement.id = "myAudio";
@@ -180,7 +178,7 @@ window.audioContext = audioContext;
     const videoSource = audioContext.createMediaElementSource(window.audioElement);
     videoSource.connect(gainNode2);
     gainNode2.connect(audioContext.destination);
-}
+
 
 //Method for compression
 window.compressor = function()
@@ -201,7 +199,6 @@ const video1 = document.getElementById('myVideo');
     const dataArray = new Uint8Array(bufferLength);
 
     function updateVolume() {
-      console.log("Eveliina is a fitty");
       // Get the frequency data from the first audio (audio1)
       analyser1.getByteFrequencyData(dataArray);
       
@@ -247,7 +244,6 @@ const video1 = document.getElementById('myVideo');
 }
 
 
-
 </script><tw-passagedata pid="1" name="init" tags="startup" position="625,375" size="100,100">
 
 &lt;!-- it is always a good idea to initialize your variables, but with arrays it is particularly important --&gt;
@@ -255,10 +251,6 @@ const video1 = document.getElementById('myVideo');
 (set: $guessDoorCode to (a:))
 
 </tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="925,325" size="100,100">{{{
-&lt;script&gt;
-window.startComp();
-&lt;/script&gt;
-
 &lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
   &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/INTRO.mp4&quot; type=&quot;video/mp4&quot;&gt;
