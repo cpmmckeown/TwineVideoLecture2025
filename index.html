@@ -162,7 +162,9 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
   100% {opacity: 1;}
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">//Setting up the background music
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
+{
+//Setting up the background music
 window.audioElement = new Audio("freaky%20music.mp3");
 audioElement.autoplay = true; // Auto play on the index page
 audioElement.id = "myAudio";
@@ -178,6 +180,7 @@ window.audioContext = audioContext;
     const videoSource = audioContext.createMediaElementSource(window.audioElement);
     videoSource.connect(gainNode2);
     gainNode2.connect(audioContext.destination);
+}
 
 //Method for compression
 window.compressor = function()
@@ -252,6 +255,9 @@ const video1 = document.getElementById('myVideo');
 (set: $guessDoorCode to (a:))
 
 </tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="925,325" size="100,100">{{{
+&lt;script&gt;
+window.startComp();
+&lt;/script&gt;
 
 &lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
@@ -388,7 +394,7 @@ window.compressor();
 
 }}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
 
-&lt;!--Don&#39;t forget to start the local server &quot;node server.js&quot; in scratch folder--&gt;
+&lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
 [[Start]]
 
 
