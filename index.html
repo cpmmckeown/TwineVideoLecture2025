@@ -395,6 +395,14 @@ window.compressor();
 }}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
 
 &lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
+
+&lt;button id=&quot;myButton&quot;&gt;iOS Audio&lt;/button&gt;
+&lt;script&gt;
+let button = document.getElementById(&#39;myButton&#39;);
+
+// Add the click event listener
+button.onclick = window.startComp() {alert(&#39;Button clicked!&#39;);};
+&lt;/script&gt;
 [[Start]]
 
 
