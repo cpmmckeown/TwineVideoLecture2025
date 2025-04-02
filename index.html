@@ -164,37 +164,22 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
 {
-window.startComp = function() {
-    // Ensure that the AudioContext is created after a user interaction
-    let audioElement = new Audio("freaky%20music.mp3");
-    audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
-    audioElement.id = "myAudio";
-    audioElement.crossOrigin = 'anonymous'; // for local testing
-    audioElement.loop = true; // Optional, if you want it to loop
+//Setting up the background music
+window.audioElement = new Audio("freaky%20music.mp3");
+audioElement.autoplay = true; // Auto play on the index page
+audioElement.id = "myAudio";
+audioElement.crossOrigin = 'anonymous'; //'anonymous' needed for local testing
+audioElement.loop = true; // Optional, depending on your requirements
 
-    // Create the AudioContext
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    window.audioContext = audioContext;
+// Create the AudioContext
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+window.audioContext = audioContext;
 
-    // Create nodes to affect the gain of the audio
+//Create nodes to affect the gain of the audio 
     const gainNode2 = audioContext.createGain();
-    const videoSource = audioContext.createMediaElementSource(audioElement);
+    const videoSource = audioContext.createMediaElementSource(window.audioElement);
     videoSource.connect(gainNode2);
     gainNode2.connect(audioContext.destination);
-
-    // Ensure AudioContext is resumed before starting audio
-    if (audioContext.state === 'suspended') {
-        audioContext.resume();
-    }
-
-    // Play the audio after the AudioContext has been resumed
-    audioElement.play().catch((error) => {
-        console.log("Error starting audio: ", error);
-    });
-
-    window.audioElement = audioElement;
-};
-
 }
 
 //Method for compression
@@ -410,7 +395,7 @@ window.compressor();
 }}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
 
 &lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
-&lt;button onclick=&quot;window.startComp()&quot; id=&quot;startMusicButton&quot;&gt;Start Music on iOS&lt;/button&gt;
+
 [[Start]]
 
 
