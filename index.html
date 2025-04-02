@@ -195,9 +195,6 @@ window.startComp = function() {
     window.audioElement = audioElement;
 };
 
-// Attach the startComp function to the button click event
-document.getElementById('startMusicButton').addEventListener('click', window.startComp);
-
 }
 
 //Method for compression
@@ -413,7 +410,7 @@ window.compressor();
 }}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
 
 &lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
-&lt;button id=&quot;startMusicButton&quot;&gt;Start Music on iOS&lt;/button&gt;
+&lt;button onclick=&quot;window.startComp()&quot; id=&quot;startMusicButton&quot;&gt;Start Music on iOS&lt;/button&gt;
 [[Start]]
 
 
