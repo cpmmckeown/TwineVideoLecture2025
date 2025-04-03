@@ -277,8 +277,9 @@ const video1 = document.getElementById('myVideo');
 
 </tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="925,325" size="100,100">{{{
 &lt;script&gt;
-if (window.isActive){return;}
+if (!window.isActive){
 window.startComp();
+}
 &lt;/script&gt;
 
 &lt;!-- The video --&gt;
