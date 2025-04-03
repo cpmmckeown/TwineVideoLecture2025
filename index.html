@@ -162,8 +162,8 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
   100% {opacity: 1;}
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
-{
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">//ATTEMPTING TO MAKE STARTING THE GLOBAL AUDIOCONTEXT A FUNCTION THAT CAN BE CALLED IN iOS
+
 window.startComp = function() {
     // Ensure that the AudioContext is created after a user interaction
     let audioElement = new Audio("FMUS.mp3");
@@ -196,9 +196,10 @@ window.startComp = function() {
     });
 
     window.audioElement = audioElement;
-};
-
 }
+
+//-----------------------------------------------
+//A METHOD TO START THE COMPRESSING WHEN NEEDED
 
 //Method for compression
 window.compressor = function()
