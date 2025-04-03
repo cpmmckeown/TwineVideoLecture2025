@@ -165,6 +165,7 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">//ATTEMPTING TO MAKE STARTING THE GLOBAL AUDIOCONTEXT A FUNCTION THAT CAN BE CALLED IN iOS
 
 window.isActive = false;
+console.log(window.isActive);
 
 window.startComp = function() {
     // Ensure that the AudioContext is created after a user interaction
@@ -278,6 +279,7 @@ const video1 = document.getElementById('myVideo');
 </tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="925,325" size="100,100">{{{
 &lt;script&gt;
 if (!window.isActive){
+window.isActive=true;
 window.startComp();
 }
 &lt;/script&gt;
