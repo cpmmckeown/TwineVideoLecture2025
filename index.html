@@ -162,23 +162,43 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
   100% {opacity: 1;}
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">//Setting up the background music
-window.audioElement = new Audio("freaky%20music.mp3");
-audioElement.autoplay = true; // Auto play on the index page
-audioElement.id = "myAudio";
-audioElement.crossOrigin = 'anonymous'; //'anonymous' needed for local testing
-audioElement.loop = true; // Optional, depending on your requirements
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
+{
+window.startComp = function() {
+    // Ensure that the AudioContext is created after a user interaction
+    let audioElement = new Audio("FMUS.mp3");
+    audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
+    audioElement.id = "myAudio";
+    audioElement.crossOrigin = 'anonymous'; // for local testing
+    audioElement.loop = true; // Optional, if you want it to loop
 
-// Create the AudioContext
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-window.audioContext = audioContext;
+    // Create the AudioContext
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    window.audioContext = audioContext;
 
-//Create nodes to affect the gain of the audio 
+    // Create nodes to affect the gain of the audio
     const gainNode2 = audioContext.createGain();
-    const videoSource = audioContext.createMediaElementSource(window.audioElement);
+    const videoSource = audioContext.createMediaElementSource(audioElement);
     videoSource.connect(gainNode2);
     gainNode2.connect(audioContext.destination);
+  
+  // Store the gainNode2 on the window to access it globally
+    window.gainNode2 = gainNode2;
 
+    // Ensure AudioContext is resumed before starting audio
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
+
+    // Play the audio after the AudioContext has been resumed
+    audioElement.play().catch((error) => {
+        console.log("Error starting audio: ", error);
+    });
+
+    window.audioElement = audioElement;
+};
+
+}
 
 //Method for compression
 window.compressor = function()
@@ -199,6 +219,7 @@ const video1 = document.getElementById('myVideo');
     const dataArray = new Uint8Array(bufferLength);
 
     function updateVolume() {
+      console.log("Eveliina is a fitty");
       // Get the frequency data from the first audio (audio1)
       analyser1.getByteFrequencyData(dataArray);
       
@@ -214,7 +235,7 @@ const video1 = document.getElementById('myVideo');
       
       
       // Set the volume of video1's audio based on the volume of audio1
-      gainNode2.gain.setValueAtTime((1-(normalizedVolume*4)), audioContext.currentTime);
+     window.gainNode2.gain.setValueAtTime((1-(normalizedVolume*4)), audioContext.currentTime);
       
       //Print the gain value after calculation
       console.log("Current gain value:", gainNode2.gain.value);
@@ -244,6 +265,7 @@ const video1 = document.getElementById('myVideo');
 }
 
 
+
 </script><tw-passagedata pid="1" name="init" tags="startup" position="625,375" size="100,100">
 
 &lt;!-- it is always a good idea to initialize your variables, but with arrays it is particularly important --&gt;
@@ -251,9 +273,13 @@ const video1 = document.getElementById('myVideo');
 (set: $guessDoorCode to (a:))
 
 </tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="925,325" size="100,100">{{{
+&lt;script&gt;
+window.startComp();
+&lt;/script&gt;
+
 &lt;!-- The video --&gt;
 &lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
-  &lt;source src=&quot;https://github.com/cpmmckeown/TwineVideoLecture2025/raw/refs/heads/main/INTRO.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;INTRO.mp4&quot; crossorigin=&quot;anonymous&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 
 &lt;div class=&quot;screenSplitWithGuidance&quot; style=&quot;padding-top: 9vh;&quot;&gt;
@@ -280,7 +306,7 @@ const video1 = document.getElementById('myVideo');
 
 (if: $guessDoorCode is (a:))[
 &lt;!-- The video --&gt;
-&lt;video id=&quot;myVideo&quot; autoplay playsinline&gt;
+&lt;video id=&quot;myVideo&quot; autoplay playsinline crossorigin=&quot;anonymous&quot; &gt;
   &lt;source src=&quot;DUCKY.mp4&quot; type=&quot;video/mp4&quot; &gt;
 &lt;/video&gt;
 
@@ -387,7 +413,7 @@ window.compressor();
 }}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
 
 &lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
-
+&lt;button onclick=&quot;window.startComp()&quot; id=&quot;startMusicButton&quot;&gt;Start Music on iOS&lt;/button&gt;
 [[Start]]
 
 
