@@ -40,10 +40,8 @@ function compressor()
 try {
   
   source2.connect(gainNode2);
-gainNode2.connect(audioContext.destination);
-
-var video1 = document.getElementById('myVideo');
-    // Start updating the volume when video1 starts playing
+  gainNode2.connect(audioContext.destination);
+  // Start updating the volume when video1 starts playing
     video1.onplay = () => 
     {
       audioContext.resume().then(() =>{updateVolume();});
@@ -122,9 +120,9 @@ function reaction()
   }
   else
   {
-    if(list[0]==="Father"){ console.log("Father");list[0]="";fatherReact();}
-    if(list[0]==="Son"){ console.log("Son");list[0]="";sonReact();}
-    if(list[0]==="Ghost"){ console.log("Ghost");list[0]="";ghostReact();}
+    if(list[0]==="Father"){ console.log("Father");list.length=0;fatherReact();}
+    if(list[0]==="Son"){ console.log("Son");list.length=0;sonReact();}
+    if(list[0]==="Ghost"){ console.log("Ghost");list.length=0;ghostReact();}
   }
 }
 
