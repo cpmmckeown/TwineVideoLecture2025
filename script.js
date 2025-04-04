@@ -5,6 +5,7 @@ var content = document.getElementById("content");
 //var myAudio = document.getElementById("myAudio");
 var curTime = 0;
 var list = [];
+var chkList = ["Ghost","Ghost","Ghost"];
 
 // Create the AudioContext
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -120,6 +121,7 @@ function reaction()
   }
   else
   {
+    if(list.equals(chkList)===true){list.length=0;goodEnding();}
     if(list[0]==="Father"){ console.log("Father");list.length=0;fatherReact();}
     if(list[0]==="Son"){ console.log("Son");list.length=0;sonReact();}
     if(list[0]==="Ghost"){ console.log("Ghost");list.length=0;ghostReact();}
@@ -131,6 +133,7 @@ function choose() {
   {
   getCurTime();
   video1.src="THINKING.mp4";
+  video1.loop = true;
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -241,5 +244,42 @@ function ghostReact() {
   setCurTime();
 }
 
+function goodEnding() {
+  getCurTime();
+  video1.src="";
+  //compressor();
+  midContent.innerHTML=`<p style="font-size: 10vh">Congratulations. The door opens to a blinding light.</p>`;
+  content.innerHTML = `
+  <div class='grid-container-one-column'>
+  <div class='grid-item'><button class='myBtn' onclick='start()'>Start Again</button></div>
+  </div>`
+  ;
+  setCurTime();
+}
 
+// attach the .equals method to Array's prototype to call it on any array
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+    // if the argument is the same array, we can be sure the contents are same as well
+    if(array === this)
+        return true;
+    // compare lengths - can save a lot of time 
+    if (this.length != array.length)
+        return false;
 
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;       
+        }           
+        else if (this[i] != array[i]) { 
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;   
+        }           
+    }       
+    return true;
+};
