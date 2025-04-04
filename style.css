@@ -20,6 +20,21 @@ body {
   
 }
 
+@media only screen and (max-width: 600px) 
+{
+  #myVideo
+  {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  height: 100vh;
+  padding-right: 24.6%;
+  transform: translateX(-30vh) translateY(-10vh);
+  }
+}
+  
+
 .content {
   position: fixed;
   bottom: 0;
