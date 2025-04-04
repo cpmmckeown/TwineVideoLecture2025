@@ -167,7 +167,7 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
 window.startComp = function() {
     // Ensure that the AudioContext is created after a user interaction
     let audioElement = new Audio("FMUS.mp3");
-    audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
+    //audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
     audioElement.id = "myAudio";
     audioElement.crossOrigin = 'anonymous'; // for local testing
     audioElement.loop = true; // Optional, if you want it to loop
@@ -185,10 +185,10 @@ window.startComp = function() {
   // Store the gainNode2 on the window to access it globally
     window.gainNode2 = gainNode2;
 
-    // Ensure AudioContext is resumed before starting audio
+    /* Ensure AudioContext is resumed before starting audio
     if (audioContext.state === 'suspended') {
         audioContext.resume();
-    }
+    }*/
 
     // Play the audio after the AudioContext has been resumed
     audioElement.play().catch((error) => {
@@ -278,8 +278,8 @@ window.startComp();
 &lt;/script&gt;
 
 &lt;!-- The video --&gt;
-&lt;video autoplay id=&quot;myVideo&quot; playsinline&gt;
-  &lt;source src=&quot;INTRO.mp4&quot; crossorigin=&quot;anonymous&quot; type=&quot;video/mp4&quot;&gt;
+&lt;video autoplay id=&quot;myVideo&quot; playsinline  crossorigin=&quot;anonymous&quot; &gt;
+  &lt;source src=&quot;INTRO.mp4&quot; type=&quot;video/mp4&quot;&gt;
 &lt;/video&gt;
 
 &lt;div class=&quot;screenSplitWithGuidance&quot; style=&quot;padding-top: 9vh;&quot;&gt;

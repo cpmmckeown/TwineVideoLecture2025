@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Interactive Film Demo SOTC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!--THE CSS FOR THIS IS FIXED SO NOT IN THE CASCADE-->
+  <video playsinline autoplay id="myVideo">
+    <source src="" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+<audio id='myAudio'><source src="FMUS.mp3"></audio> 
+
+<div class="topContent" id="topContent">
+  </div>
+  
+  <div class="midContent" id="midContent" style="margin-top: 15vh"><p style="font-size: 10vh">The Sign of the Cross</p></div>
+  
+<div class="content" id="content">
+  <div class="grid-container-one-column">
+      <div class="grid-item">
+        <button class="myBtn" onclick="start()">Click to Start</button>
+      </div>
+  </div>    
+</div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
