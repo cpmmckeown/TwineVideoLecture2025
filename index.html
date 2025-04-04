@@ -94,6 +94,7 @@ display: grid;
   position:fixed;
   top:0;
   width:90vw;
+    z-index: -50;
   }
   
   .screenSplitWithGuidance {
@@ -162,9 +163,21 @@ background: radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.84) 99%, rgba(
   100% {opacity: 1;}
 }
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.startComp = function()
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">//Making a Bool to ensure only one Global Audiocontext
+window.audioElementStart = false;
+
+//FUNCTION TO HIDE BUTTON - weird name to avoid window conflicts
+window.hideTheButton = function()
 {
+  document.getElementById("startMusicButton").style.display="none";
+}
+
+//ATTEMPTING TO MAKE STARTING THE GLOBAL AUDIOCONTEXT A FUNCTION THAT CAN BE CALLED IN iOS
 window.startComp = function() {
+  if(window.audioElementStart===true){console.log("Already started"); return;}
+  else{
+    console.log("Starting startComp for the first time");
+    window.audioElementStart = true;
     // Ensure that the AudioContext is created after a user interaction
     let audioElement = new Audio("FMUS.mp3");
     //audioElement.autoplay = false; // Disable autoplay to trigger on user interaction
@@ -196,9 +209,10 @@ window.startComp = function() {
     });
 
     window.audioElement = audioElement;
-};
-
 }
+
+//-----------------------------------------------
+//A METHOD TO START THE COMPRESSING WHEN NEEDED
 
 //Method for compression
 window.compressor = function()
@@ -262,6 +276,7 @@ const video1 = document.getElementById('myVideo');
     {
  	 console.log('Error: ', error.message);
 	}
+}
 }
 
 
@@ -410,12 +425,18 @@ window.compressor();
 (if: $guessDoorCode&#39;s length is 3)[(after:5s)[(go-to:&quot;Start&quot;)]]
 (after:6s)[(go-to:&quot;Pray&quot;))]
 
-}}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">This is here so that autoplay audio will work
-
+}}}</tw-passagedata><tw-passagedata pid="9" name="Splash Screen" tags="" position="875,175" size="100,100">{{{
+This is a small test to show the potential of a sidechain compressor in and interactive film in Twine. 
+&lt;br&gt;
+The game uses a simple array as the basis of a puzzle. There is constant background music playing throughout (a feature missing from software such as Stornaway) but when characters speak their dialogue &#39;punches through&#39; due to a simple pseudo-sidechain compressor in the project&#39;s JS file visible most easily in Twine. 
+&lt;br&gt;
+Current issues: at present the project simply does not work on mobile devices or iOS and I&#39;m trying to figure out why. If you happen to stumble upon this and know why, please contact me at cpmmckeown@gmail.com!
+&lt;br&gt;
 &lt;!--Don&#39;t forget, if testing locally, to start a local server such as by using NodeJS &quot;node server.js&quot; from CMD within the Twine scratch folder--&gt;
-&lt;button onclick=&quot;window.startComp()&quot; id=&quot;startMusicButton&quot;&gt;Start Music on iOS&lt;/button&gt;
+&lt;button onclick=&quot;window.startComp(); hideTheButton();&quot; id=&quot;startMusicButton&quot;&gt;Tap to Start Music on iOS&lt;/button&gt;
+&lt;br&gt;
 [[Start]]
-
+}}}
 
 
 </tw-passagedata><tw-passagedata pid="10" name="header" tags="footer" position="625,525" size="100,100"></tw-passagedata></tw-storydata>
