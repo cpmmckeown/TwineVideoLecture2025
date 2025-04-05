@@ -92,7 +92,22 @@ try {
 	}
 }
 
+function playVideoAndResumeAudio(videoElement, audioElement) {
+  // Unmute the video
+  videoElement.muted = false;
 
+  // Play the video
+  videoElement.play();
+
+  // When the video finishes, resume the audio and mute the video
+  videoElement.onended = () => {
+    // Resume audio
+    audioElement.play();
+
+    // Mute the video after it finishes playing
+    videoElement.muted = true;
+  };
+}
 
 function getCurTime() { 
   curTime = audioElement.currentTime;
@@ -106,16 +121,14 @@ function start()
 {
   midContent.innerHTML="";
   audioElement.play();
-  getCurTime();
   video1.src="INTRO.mp4";
   video1.loop = false;
   video1.play();
-  //compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='reaction();'>Try the Incantation</button></div>
   </div>`;
-  setCurTime();
+  //setCurTime();
 }
 
 function reaction()
@@ -137,23 +150,19 @@ function reaction()
 function choose() {
   if(list.length===3)
   {
-  getCurTime();
   video1.src="THINKING.mp4";
   video1.loop = true;
   video1.play();
-  compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='reaction()'>Try The Incantation</button></div>
   </div>`
   ;
-  setCurTime();
   }
   else{
-  getCurTime();
   video1.src="THINKING.mp4";
+  video1.loop = true;
   video1.play();
-  compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='guessFather()'>Father</button></div>
@@ -161,118 +170,97 @@ function choose() {
   <div class='grid-item'><button class='myBtn' onclick='guessGhost()'>Ghost</button></div>
   </div>`
   ;
-  setCurTime();
   }
 }
 
 function guessFather() {
-  getCurTime();
   addWord("Father");
   video1.src="FATHER.mp4";
   video1.play();
-  compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
   </div>`
   ;
-  setCurTime();
 }
 
 function guessSon() {
-  getCurTime();
   addWord("Son");
   video1.src="SON.mp4";
   video1.play();
-  compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
   </div>`
   ;
-  setCurTime();
 }
 
 function guessGhost() {
-  getCurTime();
   addWord("Ghost");
   video1.src="GHOST.mp4";
   video1.play();
-  compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
   </div>`
   ;
-  setCurTime();
 }
 
 function duckyReact() {
-  getCurTime();
   audioElement.pause();
   video1.src="DUCKY.mp4";
-  video1.muted = false;
-  video1.play();  
-  video1.onended = (event) => {audioElement.play();};
-  //compressor();
+  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose();'>Go Back</button></div>
   </div>`
-  ;
-  setCurTime(); 
+  ; 
 }
 
 function fatherReact() {
-  getCurTime();
+  audioElement.pause();
   video1.src="RFATHER.mp4";
-  video1.play();
-  compressor();
+  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
   </div>`
   ;
-  setCurTime();
+  //setCurTime();
 }
 
 function sonReact() {
-  getCurTime();
+  audioElement.pause();
   video1.src="RSON.mp4";
-  video1.play();
-  compressor();
+  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
   </div>`
   ;
-  setCurTime();
+  //setCurTime();
 }
 
 function ghostReact() {
-  getCurTime();
+  audioElement.pause();
   video1.src="RGHOST.mp4";
-  video1.play();
-  compressor();
+  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
   </div>`
   ;
-  setCurTime();
+  //setCurTime();
 }
 
 function goodEnding() {
-  getCurTime();
   video1.src="";
-  //compressor();
   midContent.innerHTML=`<p style="font-size: 10vh">Congratulations. The door opens to a blinding light.</p>`;
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='start()'>Start Again</button></div>
   </div>`
   ;
-  setCurTime();
 }
 
 // attach the .equals method to Array's prototype to call it on any array
