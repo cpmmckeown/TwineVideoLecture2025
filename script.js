@@ -109,6 +109,7 @@ function start()
   getCurTime();
   video1.src="INTRO.mp4";
   video1.loop = false;
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -139,6 +140,7 @@ function choose() {
   getCurTime();
   video1.src="THINKING.mp4";
   video1.loop = true;
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -150,6 +152,7 @@ function choose() {
   else{
   getCurTime();
   video1.src="THINKING.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -166,6 +169,7 @@ function guessFather() {
   getCurTime();
   addWord("Father");
   video1.src="FATHER.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -179,6 +183,7 @@ function guessSon() {
   getCurTime();
   addWord("Son");
   video1.src="SON.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -192,6 +197,7 @@ function guessGhost() {
   getCurTime();
   addWord("Ghost");
   video1.src="GHOST.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -204,6 +210,7 @@ function guessGhost() {
 function duckyReact() {
   getCurTime();
   video1.src="DUCKY.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -216,6 +223,7 @@ function duckyReact() {
 function fatherReact() {
   getCurTime();
   video1.src="RFATHER.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -228,6 +236,7 @@ function fatherReact() {
 function sonReact() {
   getCurTime();
   video1.src="RSON.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
@@ -240,6 +249,7 @@ function sonReact() {
 function ghostReact() {
   getCurTime();
   video1.src="RGHOST.mp4";
+  video1.play();
   compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
