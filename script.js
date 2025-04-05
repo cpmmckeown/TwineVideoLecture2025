@@ -92,20 +92,23 @@ try {
 	}
 }
 
-function playVideoAndResumeAudio(videoElement, audioElement) {
+function playVideoAndResumeAudio() {
+  //Make sure reaction video doesn't loop 
+  video1.loop = false;
+  
   // Unmute the video
-  videoElement.muted = false;
+  video1.muted = false;
 
   // Play the video
-  videoElement.play();
+  video1.play();
 
   // When the video finishes, resume the audio and mute the video
-  videoElement.onended = () => {
+  video1.onended = () => {
+     // Mute the video after it finishes playing
+    video1.muted = true;
+    
     // Resume audio
     audioElement.play();
-
-    // Mute the video after it finishes playing
-    videoElement.muted = true;
   };
 }
 
@@ -209,7 +212,7 @@ function guessGhost() {
 function duckyReact() {
   audioElement.pause();
   video1.src="DUCKY.mp4";
-  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
+  playVideoAndResumeAudio();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose();'>Go Back</button></div>
@@ -220,7 +223,7 @@ function duckyReact() {
 function fatherReact() {
   audioElement.pause();
   video1.src="RFATHER.mp4";
-  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
+  playVideoAndResumeAudio();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
@@ -232,7 +235,7 @@ function fatherReact() {
 function sonReact() {
   audioElement.pause();
   video1.src="RSON.mp4";
-  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
+  playVideoAndResumeAudio();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
@@ -244,7 +247,7 @@ function sonReact() {
 function ghostReact() {
   audioElement.pause();
   video1.src="RGHOST.mp4";
-  playVideoAndResumeAudio(document.getElementById('video1'), document.getElementById('audioElement'));
+  playVideoAndResumeAudio();
   content.innerHTML = `
   <div class='grid-container-one-column'>
   <div class='grid-item'><button class='myBtn' onclick='choose()'>Go Back</button></div>
