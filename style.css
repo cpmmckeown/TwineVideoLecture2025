@@ -11,6 +11,11 @@ body {
   margin: 0;
 }
 
+#myAudio
+{
+  z-index: 100;
+}
+
 #myVideo {
   position: fixed;
   top: 0;
