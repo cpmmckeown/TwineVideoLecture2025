@@ -105,8 +105,8 @@ function setCurTime() {
 function start() 
 {
   midContent.innerHTML="";
-  getCurTime();
   audioElement.play();
+  getCurTime();
   video1.src="INTRO.mp4";
   video1.loop = false;
   compressor();
