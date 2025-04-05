@@ -209,10 +209,11 @@ function guessGhost() {
 
 function duckyReact() {
   getCurTime();
+  audioElement.pause();
   video1.src="DUCKY.mp4";
   video1.muted = false;
   video1.play();  
-  onended = (event) => {audioElement.play();};
+  video1.onended = (event) => {audioElement.play();};
   //compressor();
   content.innerHTML = `
   <div class='grid-container-one-column'>
