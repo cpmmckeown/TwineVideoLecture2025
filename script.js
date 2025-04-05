@@ -7,21 +7,7 @@ var curTime = 0;
 var list = [];
 var chkList = ["Ghost","Ghost","Ghost"];
 
-// Create the AudioContext
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-window.audioContext = audioContext;
-// Create nodes to analyse the Video's volume
-var analyser1 = audioContext.createAnalyser();
-var source1 = audioContext.createMediaElementSource(video1);
-source1.connect(analyser1);
-analyser1.connect(audioContext.destination);
-// Set analyser properties
-analyser1.fftSize = 256;
-var bufferLength = analyser1.frequencyBinCount;
-var dataArray = new Uint8Array(bufferLength);
-// Create nodes to affect the gain of the audio
-var gainNode2 = audioContext.createGain();
-var source2 = audioContext.createMediaElementSource(audioElement);
+
 
 function addWord(s)
 {list.push(s);}
@@ -38,30 +24,23 @@ function startComp() {
 //Method for compression
 function compressor()
 {
-try {
+  // Create the AudioContext
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+window.audioContext = audioContext;
+// Create nodes to analyse the Video's volume
+var analyser1 = audioContext.createAnalyser();
+var source1 = audioContext.createMediaElementSource(video1);
+source1.connect(analyser1);
+analyser1.connect(audioContext.destination);
+// Set analyser properties
+analyser1.fftSize = 256;
+var bufferLength = analyser1.frequencyBinCount;
+var dataArray = new Uint8Array(bufferLength);
+// Create nodes to affect the gain of the audio
+var gainNode2 = audioContext.createGain();
+var source2 = audioContext.createMediaElementSource(audioElement);
   
-  source2.connect(gainNode2);
-  gainNode2.connect(audioContext.destination);
-  // Start updating the volume when video1 starts playing
-    video1.onplay = () => 
-    {
-      audioContext.resume().then(() =>{updateVolume();});
-    };
-
-
-// Check if the element was found
-  if (!myVideo) 
-  {  
-    throw new Error('Element with id "myVideo" not found');
-  }
-	} 
-  catch (error) 
-    {
- 	 console.log('Error: ', error.message);
-	}
-}
-
-function updateVolume() {
+  function updateVolume() {
       console.log("Eveliina is a fitty");
   
       // Get the frequency data from the first audio (audio1)
@@ -88,6 +67,32 @@ function updateVolume() {
       if(!video1.paused)
       {requestAnimationFrame(updateVolume);}
     }
+  
+  
+try {
+  
+  source2.connect(gainNode2);
+  gainNode2.connect(audioContext.destination);
+  // Start updating the volume when video1 starts playing
+    video1.onplay = () => 
+    {
+      audioContext.resume().then(() =>{updateVolume();});
+    };
+
+
+// Check if the element was found
+  if (!myVideo) 
+  {  
+    throw new Error('Element with id "myVideo" not found');
+  }
+	} 
+  catch (error) 
+    {
+ 	 console.log('Error: ', error.message);
+	}
+}
+
+
 
 function getCurTime() { 
   curTime = audioElement.currentTime;
