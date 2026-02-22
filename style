@@ -12,7 +12,7 @@ tw-link:hover, .enchantment-link:hover {
 }
 
 
-.montserrat {
+.UniFrakturCook {
   font-family: "UniFrakturCook", cursive;
   font-weight: 700;
   font-style: normal;
